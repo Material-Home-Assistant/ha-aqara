@@ -1,0 +1,365 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "pick_device": {
+        "title": "Seleziona Aqara G100 Rilevata",
+        "description": "La scansione automatica della rete locale ha trovato i seguenti dispositivi. Seleziona la tua telecamera oppure scegli l'inserimento manuale dell'IP.",
+        "data": {
+          "selected_host": "Telecamera trovata in LAN"
+        },
+        "data_description": {
+          "selected_host": "Scegli una delle telecamere trovate automaticamente nella tua rete locale oppure seleziona l'inserimento manuale dell'indirizzo IP."
+        }
+      },
+      "manual": {
+        "title": "Configura Telecamera",
+        "description": "Inserisci l'indirizzo IP della telecamera e le credenziali RTSP attivate nell'app Aqara Home (**Impostazioni telecamera → Altre impostazioni → Anteprima LAN RTSP**). Tutte le istruzioni compaiono direttamente sotto ogni campo.",
+        "data": {
+          "camera_ip": "IP Locale Telecamera",
+          "rtsp_username": "Username RTSP",
+          "rtsp_password": "Password RTSP",
+          "rtsp_port": "Porta RTSP Telecamera",
+          "default_channel": "Canale Qualità RTSP",
+          "idle_sleep_snapshot": "Stop Trasmissione in Standby"
+        },
+        "data_description": {
+          "camera_ip": "App Aqara Home -> Impostazioni telecamera -> Informazioni di rete -> Indirizzo IP.",
+          "rtsp_username": "App Aqara Home -> Impostazioni telecamera -> Altre impostazioni -> Anteprima LAN RTSP -> Nome utente (o parte utente nell'URL rtsp://utente:password@ip:8554/ch1).",
+          "rtsp_password": "App Aqara Home -> Impostazioni telecamera -> Altre impostazioni -> Anteprima LAN RTSP -> Password.",
+          "rtsp_port": "App Aqara Home -> Altre impostazioni -> Anteprima LAN RTSP (predefinita 8554).",
+          "default_channel": "ch1 = 2K Alta (2304x1296), funziona solo se Apple HomeKit è disabilitato sulla camera (con HomeKit attivo viene limitata a 1080p); ch2 = Media (640x360); ch3 = Bassa.",
+          "idle_sleep_snapshot": "Quando attivo e nessuno sta guardando il Live, evita che le schede della dashboard sveglino la telecamera ogni ~10 secondi per aggiornare l'anteprima statica, mantenendo la G100 a riposo in standby."
+        }
+      },
+      "discovery_confirm": {
+        "title": "Telecamera Rilevata ({ip})",
+        "description": "Una telecamera Aqara è stata trovata automaticamente all'indirizzo **{ip}**. Inserisci le credenziali RTSP dall'app Aqara Home (**Impostazioni telecamera → Altre impostazioni → Anteprima LAN RTSP**).",
+        "data": {
+          "rtsp_username": "Username RTSP",
+          "rtsp_password": "Password RTSP",
+          "rtsp_port": "Porta RTSP Telecamera",
+          "default_channel": "Canale Qualità RTSP",
+          "idle_sleep_snapshot": "Stop Trasmissione in Standby"
+        },
+        "data_description": {
+          "rtsp_username": "App Aqara Home -> Impostazioni telecamera -> Altre impostazioni -> Anteprima LAN RTSP -> Nome utente (o parte utente nell'URL rtsp://utente:password@ip:8554/ch1).",
+          "rtsp_password": "App Aqara Home -> Impostazioni telecamera -> Altre impostazioni -> Anteprima LAN RTSP -> Password.",
+          "rtsp_port": "App Aqara Home -> Altre impostazioni -> Anteprima LAN RTSP (predefinita 8554).",
+          "default_channel": "ch1 = 2K Alta (2304x1296), funziona solo se Apple HomeKit è disabilitato sulla camera (con HomeKit attivo viene limitata a 1080p); ch2 = Media (640x360); ch3 = Bassa.",
+          "idle_sleep_snapshot": "Quando attivo e nessuno sta guardando il Live, evita che le schede della dashboard sveglino la telecamera ogni ~10 secondi per aggiornare l'anteprima statica, mantenendo la G100 a riposo in standby."
+        }
+      },
+      "aqara_account": {
+        "title": "Sincronizzazione App Aqara (Opzionale)",
+        "description": "Collega il tuo account Aqara Home per sbloccare controlli hardware e sensori AI non disponibili tramite il solo RTSP locale. Cosa abilita: Privacy reale nell'App (spegnimento hardware camera), LED di Stato, Flash / Faretto, Visione Notturna, rilevamento Movimento, Persone, Animali, Volti, Veicoli, Pacchi, Fuoco e Suono (con sensibilità e intervalli), Volume altoparlante, lingua voce, sovrapposizione data/logo/riquadri, blocco antifurto, segnale Wi-Fi e stato hardware. Lascia Email e Password vuoti per usare solo video RTSP e Talkback in LAN (le entità non compatibili restano nascoste).",
+        "data": {
+          "aqara_email": "Email account Aqara Home",
+          "aqara_password": "Password account Aqara Home",
+          "aqara_region": "Regione account Aqara",
+          "aqara_device_id": "ID Telecamera Aqara (lumi3.xxx)"
+        },
+        "data_description": {
+          "aqara_email": "Email dell'account usato nell'app Aqara Home. Lascia vuoto insieme alla password se vuoi solo lo stream RTSP e l'audio locale.",
+          "aqara_password": "Password dell'account Aqara Home per autenticare la sincronizzazione di controlli avanzati e rilevamenti AI.",
+          "aqara_region": "Server regionale dell'account Aqara Home (in Italia/UE seleziona Europa (EU)). Deve coincidere con quello scelto nell'app.",
+          "aqara_device_id": "Identificativo hardware della telecamera (formato lumi3.xxx), rilevato automaticamente via mDNS o dal tuo account. Lascialo invariato salvo diversa indicazione diagnostica."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect_camera": "Impossibile raggiungere la porta RTSP della Aqara G100 all'IP indicato.",
+      "aqara_credentials_incomplete": "Inserisci sia Email che Password Aqara, oppure lascia entrambi vuoti.",
+      "aqara_auth_failed": "Accesso Aqara fallito: controlla email, password e regione dell'account.",
+      "aqara_connect_failed": "Impossibile contattare il server regionale Aqara.",
+      "unknown": "Errore imprevisto."
+    },
+    "abort": {
+      "already_configured": "Questa Aqara G100 è già configurata.",
+      "not_aqara_camera": "Il dispositivo rilevato non espone le porte RTSP/P2P di una Aqara G100."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni Telecamera",
+        "description": "Modifica i parametri RTSP locali della telecamera o gestisci la sincronizzazione opzionale con l'App Aqara Home (che abilita controlli hardware e sensori AI). Svuota Email e Password Aqara se vuoi usare solo RTSP e Talkback in LAN.",
+        "data": {
+          "camera_ip": "IP Locale Telecamera",
+          "rtsp_username": "Username RTSP",
+          "rtsp_password": "Password RTSP",
+          "rtsp_port": "Porta RTSP Telecamera",
+          "default_channel": "Canale Qualità RTSP",
+          "idle_sleep_snapshot": "Stop Trasmissione in Standby",
+          "aqara_email": "Email account Aqara Home",
+          "aqara_password": "Password account Aqara Home",
+          "aqara_region": "Regione account Aqara",
+          "aqara_device_id": "ID Telecamera Aqara (lumi3.xxx)"
+        },
+        "data_description": {
+          "camera_ip": "App Aqara Home -> Impostazioni telecamera -> Informazioni di rete -> Indirizzo IP.",
+          "rtsp_username": "App Aqara Home -> Impostazioni telecamera -> Altre impostazioni -> Anteprima LAN RTSP -> Nome utente.",
+          "rtsp_password": "App Aqara Home -> Impostazioni telecamera -> Altre impostazioni -> Anteprima LAN RTSP -> Password.",
+          "rtsp_port": "App Aqara Home -> Altre impostazioni -> Anteprima LAN RTSP (predefinita 8554).",
+          "default_channel": "ch1 = 2K Alta (2304x1296), funziona solo se Apple HomeKit è disabilitato sulla camera (con HomeKit attivo viene limitata a 1080p); ch2 = Media (640x360); ch3 = Bassa.",
+          "idle_sleep_snapshot": "Quando attivo e nessuno sta guardando il Live, evita che le schede della dashboard sveglino la telecamera ogni ~10 secondi per aggiornare l'anteprima statica, mantenendo la G100 a riposo in standby.",
+          "aqara_email": "Email dell'account Aqara Home per sbloccare Privacy reale, LED, Flash, Visione Notturna, Volume e rilevamenti AI (svuota con la password per disattivare la sincronizzazione cloud).",
+          "aqara_password": "Password dell'account Aqara Home associato alla telecamera.",
+          "aqara_region": "Server regionale dell'account Aqara Home (in Italia/UE seleziona Europa (EU)).",
+          "aqara_device_id": "ID hardware rilevato automaticamente via mDNS (lumi3.xxx). Modificalo solo se richiesto dalla scansione diagnostica."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect_camera": "Impossibile raggiungere la porta RTSP della Aqara G100 all'IP indicato.",
+      "aqara_credentials_incomplete": "Inserisci sia Email che Password Aqara, oppure lascia entrambi vuoti.",
+      "aqara_auth_failed": "Accesso Aqara fallito: controlla email, password e regione dell'account.",
+      "aqara_connect_failed": "Impossibile contattare il server regionale Aqara."
+    }
+  },
+  "selector": {
+    "default_channel": {
+      "options": {
+        "ch1": "ch1 - 2K Alta (2304x1296)",
+        "ch2": "ch2 - Media (640x360)",
+        "ch3": "ch3 - Bassa"
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "camera_power": {
+        "name": "Accensione Telecamera"
+      },
+      "privacy_mode": {
+        "name": "Privacy Mode"
+      },
+      "idle_transmission_guard": {
+        "name": "Stop Trasmissione in Standby"
+      },
+      "status_led": {
+        "name": "LED di Stato"
+      },
+      "spotlight": {
+        "name": "Flash / Faretto"
+      },
+      "motion_detection_enabled": {
+        "name": "Rilevamento Movimento"
+      },
+      "person_detection_enabled": {
+        "name": "Rilevamento Persone"
+      },
+      "animal_detection_enabled": {
+        "name": "Rilevamento Animali"
+      },
+      "face_detection_enabled": {
+        "name": "Rilevamento Volti"
+      },
+      "vehicle_detection_enabled": {
+        "name": "Rilevamento Veicoli"
+      },
+      "package_detection_enabled": {
+        "name": "Rilevamento Pacchi"
+      },
+      "fire_detection_enabled": {
+        "name": "Rilevamento Fuoco"
+      },
+      "disable_audio_recording": {
+        "name": "Disattiva Registrazione Audio"
+      },
+      "timestamp_overlay": {
+        "name": "Sovrapposizione Data e Ora"
+      },
+      "logo_watermark": {
+        "name": "Filigrana Logo Aqara"
+      },
+      "detection_box": {
+        "name": "Riquadro Rilevamento"
+      },
+      "timed_snapshot_10m": {
+        "name": "Istantanea Ogni 10 Minuti"
+      },
+      "offline_notification": {
+        "name": "Notifica Dispositivo Offline"
+      },
+      "timelapse_video": {
+        "name": "Video Timelapse"
+      },
+      "anti_theft_lock": {
+        "name": "Blocco Antifurto"
+      }
+    },
+    "binary_sensor": {
+      "motion_detected": {
+        "name": "Movimento"
+      },
+      "person_detected": {
+        "name": "Persona Rilevata"
+      },
+      "pet_detected": {
+        "name": "Animale Rilevato"
+      },
+      "package_detected": {
+        "name": "Pacco Rilevato"
+      },
+      "vehicle_detected": {
+        "name": "Veicolo Rilevato"
+      },
+      "sound_detected": {
+        "name": "Suono Rilevato"
+      },
+      "camera_active": {
+        "name": "Camera Hardware Attiva"
+      },
+      "online": {
+        "name": "Online"
+      },
+      "is_transmitting": {
+        "name": "Trasmissione Attiva"
+      },
+      "rtsp_port_open": {
+        "name": "Porta RTSP (8554)"
+      },
+      "talkback_port_open": {
+        "name": "Porta Audio P2P Locale (54324)"
+      },
+      "gatekeeper_running": {
+        "name": "Gatekeeper Connessione Unica Attivo"
+      },
+      "aqara_app_connected": {
+        "name": "Sincronizzazione App Aqara"
+      }
+    },
+    "sensor": {
+      "stream_status": {
+        "name": "Stato Flusso",
+        "state": {
+          "streaming": "Live Attivo",
+          "idle_standby": "In Standby",
+          "privacy_active": "Bloccata (Privacy)",
+          "offline": "Offline"
+        }
+      },
+      "last_motion_event": {
+        "name": "Ultimo Movimento Rilevato"
+      },
+      "active_connections": {
+        "name": "Connessioni Attive verso Camera"
+      },
+      "bitrate_kbps": {
+        "name": "Bitrate Live"
+      },
+      "latency_ms": {
+        "name": "Latenza Rete"
+      },
+      "bytes_received": {
+        "name": "Dati Ricevuti"
+      },
+      "blocked_connections": {
+        "name": "Connessioni Extra Bloccate"
+      },
+      "wifi_rssi": {
+        "name": "Segnale Wi-Fi"
+      }
+    },
+    "select": {
+      "stream_channel": {
+        "name": "Canale Stream RTSP",
+        "state": {
+          "ch1": "ch1 - 2K Alta",
+          "ch2": "ch2 - Media",
+          "ch3": "ch3 - Bassa"
+        }
+      },
+      "stream_engine": {
+        "name": "Motore Streaming Live",
+        "state": {
+          "auto": "Auto (Predefinito HA)",
+          "hls": "HLS / Stream (TCP)",
+          "webrtc": "WebRTC (go2rtc integrato HA)"
+        }
+      },
+      "night_vision": {
+        "name": "Visione Notturna",
+        "state": {
+          "auto": "Auto",
+          "always_on": "Sempre Accesa (IR)",
+          "always_off": "Sempre Spenta",
+          "spotlight": "Faretto a Colori"
+        }
+      },
+      "motion_sensitivity": {
+        "name": "Sensibilità Movimento",
+        "state": {
+          "low": "Bassa",
+          "medium": "Media",
+          "high": "Alta"
+        }
+      },
+      "person_sensitivity": {
+        "name": "Sensibilità Persone",
+        "state": {
+          "low": "Bassa",
+          "medium": "Media",
+          "high": "Alta"
+        }
+      },
+      "power_frequency": {
+        "name": "Frequenza Rete",
+        "state": {
+          "50hz": "50 Hz",
+          "60hz": "60 Hz"
+        }
+      },
+      "timestamp_format": {
+        "name": "Formato Data e Ora",
+        "state": {
+          "ymd": "AAAA-MM-GG",
+          "mdy": "MM-GG-AAAA",
+          "dmy": "GG-MM-AAAA"
+        }
+      },
+      "device_language": {
+        "name": "Lingua Voce Camera",
+        "state": {
+          "default": "Predefinita",
+          "chinese": "Cinese",
+          "english": "Inglese",
+          "cantonese": "Cantonese",
+          "spanish": "Spagnolo",
+          "russian": "Russo",
+          "korean": "Coreano",
+          "portuguese": "Portoghese",
+          "german": "Tedesco",
+          "french": "Francese",
+          "italian": "Italiano",
+          "japanese": "Giapponese",
+          "polish": "Polacco",
+          "arabic": "Arabo"
+        }
+      }
+    },
+    "number": {
+      "device_volume": {
+        "name": "Volume Altoparlante"
+      },
+      "motion_interval": {
+        "name": "Intervallo Rilevamento Movimento"
+      },
+      "person_interval": {
+        "name": "Intervallo Rilevamento Persone"
+      }
+    },
+    "button": {
+      "force_stop_stream": {
+        "name": "Ferma Trasmissione Ora"
+      },
+      "refresh_status": {
+        "name": "Aggiorna Stato Locale"
+      },
+      "run_diagnostic_scan": {
+        "name": "Scansione Diagnostica G100"
+      }
+    }
+  }
+}

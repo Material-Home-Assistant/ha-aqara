@@ -1,0 +1,81 @@
+set_privacy_mode:
+  name: Set Privacy Mode
+  description: Enable or disable Privacy Mode (cuts local RTSP Gatekeeper socket and triggers optional App Aqara block hook).
+  fields:
+    entity_id:
+      name: Entity
+      description: Optional Aqara G100 entity ID (if omitted, applies to all configured G100 cameras).
+      required: false
+      selector:
+        entity:
+          integration: ha_aqara
+    enabled:
+      name: Enabled
+      description: True to activate Privacy Mode, False to restore normal standby.
+      required: true
+      selector:
+        boolean:
+
+stop_transmission:
+  name: Force Stop Transmission
+  description: Immediately close the active RTSP session on the built-in single-connection gatekeeper.
+  fields:
+    entity_id:
+      name: Entity
+      description: Optional Aqara G100 entity ID.
+      required: false
+      selector:
+        entity:
+          integration: ha_aqara
+
+switch_channel:
+  name: Switch RTSP Channel
+  description: Switch the RTSP source stream between ch1 (2K), ch2 (Medium), and ch3 (Low).
+  fields:
+    entity_id:
+      name: Entity
+      description: Optional Aqara G100 entity ID.
+      required: false
+      selector:
+        entity:
+          integration: ha_aqara
+    channel:
+      name: Channel
+      description: RTSP channel to activate.
+      required: true
+      selector:
+        select:
+          options:
+            - ch1
+            - ch2
+            - ch3
+
+run_diagnostic_scan:
+  name: Run G100 Diagnostic Scan
+  description: Scan local mDNS (_aqara._tcp), TCP ports, and Aqara G100 RID/Trait capabilities, posting a persistent notification report.
+  fields:
+    entity_id:
+      name: Entity
+      description: Optional Aqara G100 entity ID.
+      required: false
+      selector:
+        entity:
+          integration: ha_aqara
+
+play_audio:
+  name: Play Local Audio (Talkback)
+  description: Stream a local audio file path or HTTP URL directly to the Aqara G100 speaker over LAN (TCP 54324 / UDP 54323).
+  fields:
+    entity_id:
+      name: Entity
+      description: Optional Aqara G100 entity ID.
+      required: false
+      selector:
+        entity:
+          integration: ha_aqara
+    audio_source:
+      name: Audio Source
+      description: Local path (e.g. /media/chime.mp3) or HTTP/HTTPS audio URL playable by ffmpeg.
+      required: true
+      selector:
+        text:

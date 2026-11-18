@@ -1,0 +1,73 @@
+name: "🐛 Bug Report (Aqara G100)"
+description: "Found a bug in the Aqara Camera G100 integration? Help us fix it!"
+title: "[BUG]: "
+labels: ["bug"]
+assignees:
+  - "giovannilamarmora"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this report! 🙏
+        Providing G100 diagnostic info helps us verify firmware RIDs and traits faster.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "📝 Bug Description"
+      description: "Describe the problem, what happened, and what you expected to happen."
+      placeholder: "I noticed that Privacy Mode / LED / RTSP..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: "🚶‍♂️ Steps to Reproduce"
+      description: "Describe the exact steps to reproduce the issue."
+      value: |
+        1. Go to '...'
+        2. Toggle '...'
+        3. Observe '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: "📋 G100 Diagnostic Scan & HA Diagnostics"
+      description: |
+        Please press **Scansione Diagnostica G100** on the device page (or download diagnostics via **Settings -> Devices & Services -> HA Aqara -> 3 dots -> Download diagnostics**) and paste the output here. Sensitive passwords/tokens are redacted.
+      render: "markdown"
+      placeholder: "Paste Scansione Diagnostica G100 output or HA diagnostics JSON here"
+
+  - type: input
+    id: firmware_version
+    attributes:
+      label: "📷 G100 Firmware Version"
+      placeholder: "e.g., 4.5.45_0004"
+    validations:
+      required: true
+
+  - type: input
+    id: ha_version
+    attributes:
+      label: "🏠 Home Assistant Version"
+      placeholder: "e.g., 2026.x"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "📜 Logs and Errors"
+      description: "Paste any relevant logs from `Settings -> System -> Logs`."
+      render: "shell"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "📸 Screenshots"
+      description: "Optional screenshots from Home Assistant or Aqara Home app."

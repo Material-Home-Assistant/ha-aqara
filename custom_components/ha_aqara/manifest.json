@@ -1,0 +1,26 @@
+{
+  "domain": "ha_aqara",
+  "name": "HA Aqara",
+  "codeowners": ["@giovannilamarmora", "@Material-Home-Assistant"],
+  "config_flow": true,
+  "dependencies": ["camera", "ffmpeg", "network", "stream"],
+  "dhcp": [
+    { "macaddress": "54EF44*" },
+    { "macaddress": "6490C1*" },
+    { "macaddress": "04CF8C*" },
+    { "hostname": "*aqara*" },
+    { "hostname": "*lumi*" }
+  ],
+  "documentation": "https://github.com/Material-Home-Assistant/ha-aqara",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/Material-Home-Assistant/ha-aqara/issues",
+  "requirements": [],
+  "version": "1.0.0",
+  "zeroconf": [
+    { "type": "_aqara._tcp.local." },
+    { "type": "_aqara-setup._tcp.local." },
+    { "type": "_hap._tcp.local.", "name": "*aqara*" },
+    { "type": "_hap._tcp.local.", "name": "*g100*" },
+    { "type": "_rtsp._tcp.local." }
+  ]
+}
