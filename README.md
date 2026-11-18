@@ -40,7 +40,7 @@ Before adding the integration in Home Assistant:
 
 ### ⚡ HACS (Recommended)
 
-[![Open your Home Assistant instance and open a repository inside HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Material-Home-Assistant&repository=ha-aqara)
+[![Open your Home Assistant instance and open a repository inside HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Material-Home-Assistant&repository=ha-aqara&category=integration)
 
 1. Click the **Open HACS Repository** button above, or open HACS in Home Assistant, go to the top right menu (`⋮`), select **Custom repositories**, paste `https://github.com/Material-Home-Assistant/ha-aqara`, and choose category **Integration**.
 2. Click **Download** on **HA Aqara**.
